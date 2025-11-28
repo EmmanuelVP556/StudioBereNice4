@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Extensiones de Cabello | Studio Berenice</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Iconos (FontAwesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Configuración de Colores Personalizados -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#fff5f8',      
+              text: '#a54b4b',    
+              primary: '#ff69b4', 
+              hover: '#e1579f',   
+              dark: '#444444',    
+              white: '#ffffff',
+              light: '#fdf2f8'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Nunito"', 'sans-serif'],
+          },
+          boxShadow: {
+            'card': '0 10px 30px -5px rgba(255, 105, 180, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+            'glow': '0 0 15px rgba(255, 105, 180, 0.3)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #fff5f8;
+      color: #a54b4b;
+      overflow-x: hidden;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Animaciones */
+    .dropdown-menu {
+      transform: translateY(10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .group:hover .dropdown-menu,
+    .dropdown-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Patrón de fondo sutil */
+    .bg-pattern {
+      background-image: radial-gradient(#ff69b4 0.5px, transparent 0.5px);
+      background-size: 20px 20px;
+      opacity: 0.1;
+    }
+
+    /* Botón Flotante WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #25d366;
+      color: white;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 35px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      animation: pulse-green 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #20ba5a;
+    }
+
+    @keyframes pulse-green {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased flex flex-col min-h-screen pt-24 bg-white">
+
+  <!-- HEADER -->
+  <header id="header" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-sm py-2">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center">
+        <!-- Reemplaza con la ruta real -->
+        <img src="/img/Fondo/logo.png" alt="Studio Berenice Logo" class="h-16 md:h-20 w-auto object-contain">
+      </a>
+
+      <!-- Navegación Desktop -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="text-brand-dark hover:text-brand-primary font-semibold transition-colors">Inicio</a>
+        
+        <div class="relative group cursor-pointer py-4"> 
+          <a href="#" class="text-brand-primary font-bold transition-colors flex items-center gap-1">
+            Servicios <i class="fas fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+          </a>
+          <ul class="dropdown-menu absolute top-full left-0 w-48 bg-white shadow-xl rounded-lg py-2 mt-0 border-t-2 border-brand-primary">
+            <li><a href="manicure.html" class="block px-4 py-2 text-brand-dark hover:bg-brand-bg hover:text-brand-primary transition-colors"><i class="fas fa-hand-sparkles mr-2"></i>Manicure</a></li>
+            <li><a href="pedicure.html" class="block px-4 py-2 text-brand-dark hover:bg-brand-bg hover:text-brand-primary transition-colors"><i class="fas fa-shoe-prints mr-2"></i>Pedicure</a></li>
+            <li><a href="trenzas.html" class="block px-4 py-2 text-brand-dark hover:bg-brand-bg hover:text-brand-primary transition-colors"><i class="fas fa-user-friends mr-2"></i>Trenzas</a></li>
+            <li><a href="cejas.html" class="block px-4 py-2 text-brand-dark hover:bg-brand-bg hover:text-brand-primary transition-colors"><i class="fas fa-eye mr-2"></i>Cejas</a></li>
+            <li><a href="extensiones.html" class="block px-4 py-2 text-brand-primary bg-brand-bg font-semibold"><i class="fas fa-long-arrow-alt-down mr-2"></i>Extensiones</a></li>
+          </ul>
+        </ul>
+        </div>
+
+        <a href="#galeria" class="text-brand-dark hover:text-brand-primary font-semibold transition-colors">Galería</a>
+        <a href="Contacto.html" class="text-brand-dark hover:text-brand-primary font-semibold transition-colors">Contacto</a>
+        <a href="https://wa.me/+522941182897" target="_blank" class="px-6 py-2 bg-brand-primary text-white rounded-full font-bold shadow-md hover:bg-brand-hover transition-all transform hover:-translate-y-1">
+          Agendar
+        </a>
+      </nav>
+
+      <!-- Botón Menú Móvil -->
+      <button id="mobile-menu-btn" class="md:hidden text-2xl text-brand-text hover:text-brand-primary focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+      <div class="flex flex-col px-6 py-4 space-y-3">
+        <a href="index.html" class="font-semibold text-brand-dark hover:text-brand-primary">Inicio</a>
+        <div class="relative group cursor-pointer py-4"> 
+          <a href="#" class="text-brand-primary font-bold transition-colors flex items-center gap-1">
+            Servicios <i class="fas fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+          </a>
+          <ul class="dropdown-menu absolute top-full left-0 w-48 bg-white shadow-xl rounded-lg py-2 mt-0 border-t-2 border-brand-primary">
+            <li><a href="manicure.html" class="block px-4 py-2 text-brand-dark hover:bg-brand-bg hover:text-brand-primary transition-colors"><i class="fas fa-hand-sparkles mr-2"></i>Manicure</a></li>
+            <li><a href="pedicure.html" class="block px-4 py-2 text-brand-dark hover:bg-brand-bg hover:text-brand-primary transition-colors"><i class="fas fa-shoe-prints mr-2"></i>Pedicure</a></li>
+            <li><a href="trenzas.html" class="block px-4 py-2 text-brand-dark hover:bg-brand-bg hover:text-brand-primary transition-colors"><i class="fas fa-user-friends mr-2"></i>Trenzas</a></li>
+            <li><a href="cejas.html" class="block px-4 py-2 text-brand-dark hover:bg-brand-bg hover:text-brand-primary transition-colors"><i class="fas fa-eye mr-2"></i>Cejas</a></li>
+            <li><a href="extensiones.html" class="block px-4 py-2 text-brand-primary bg-brand-bg font-semibold"><i class="fas fa-long-arrow-alt-down mr-2"></i>Extensiones</a></li>
+          </ul>
+        </ul>
+        </div>
+        <a href="#galeria" class="font-semibold text-brand-dark hover:text-brand-primary">Galería</a>
+         <a href="Contacto.html" class="font-semibold text-brand-dark hover:text-brand-primary">Contacto</a>
+        <a href="https://wa.me/+522941182897" target="_blank" class="block text-center bg-brand-primary text-white py-2 rounded-full font-bold mt-2">Agendar Cita</a>
+    </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="flex-grow">
+    
+    <!-- Sección Intro y Descripción con Degradado -->
+    <section class="relative py-20 bg-gradient-to-b from-brand-bg to-white text-center overflow-hidden">
+      <!-- Decoración de fondo -->
+      <div class="absolute inset-0 bg-pattern opacity-30 pointer-events-none"></div>
+      
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto reveal active">
+          <span class="text-brand-primary uppercase tracking-widest text-sm font-bold mb-2 block">Volumen y Longitud</span>
+          <h1 class="font-serif text-5xl md:text-6xl font-bold text-brand-text mb-6">Extensiones de Cabello</h1>
+          <div class="w-24 h-1 bg-brand-primary mx-auto rounded-full mb-8"></div>
+          <p class="text-gray-600 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+            En <span class="font-bold text-brand-text">Studio Berenice</span> transformamos tu melena al instante. Utilizamos cabello 100% natural y las técnicas más avanzadas para un resultado imperceptible y espectacular.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tarjetas de Información -->
+    <section class="pb-20 pt-10 container mx-auto px-6 relative z-10 -mt-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        
+        <!-- Tarjeta 1: Tape-In -->
+        <div class="bg-white p-8 md:p-10 rounded-[2rem] shadow-card text-center transform transition duration-500 hover:-translate-y-4 hover:shadow-glow border-t-4 border-brand-primary reveal">
+          <div class="w-16 h-16 mx-auto bg-brand-bg rounded-full flex items-center justify-center text-brand-primary text-2xl mb-6">
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <h3 class="font-serif text-2xl font-bold text-brand-text mb-4">Tape-In (Adhesivas)</h3>
+          <p class="text-gray-600 leading-relaxed mb-6">
+            Bandas ultra-planas e invisibles que se integran perfectamente. Ideales para aportar volumen y largo de manera rápida y muy cómoda.
+          </p>
+          <div class="text-brand-primary font-bold text-sm uppercase tracking-wide">Naturalidad</div>
+        </div>
+
+        <!-- Tarjeta 2: Micro-Ring -->
+        <div class="bg-white p-8 md:p-10 rounded-[2rem] shadow-card text-center transform transition duration-500 hover:-translate-y-4 hover:shadow-glow border-t-4 border-brand-primary reveal" style="transition-delay: 150ms;">
+          <div class="w-16 h-16 mx-auto bg-brand-bg rounded-full flex items-center justify-center text-brand-primary text-2xl mb-6">
+            <i class="fas fa-ring"></i>
+          </div>
+          <h3 class="font-serif text-2xl font-bold text-brand-text mb-4">Micro-Ring / Chip</h3>
+          <p class="text-gray-600 leading-relaxed mb-6">
+            Técnica de fijación en frío mecha a mecha mediante pequeños anillos. Perfecta para un movimiento 100% natural sin calor ni pegamentos.
+          </p>
+          <div class="text-brand-primary font-bold text-sm uppercase tracking-wide">Seguridad</div>
+        </div>
+
+        <!-- Tarjeta 3: Keratina -->
+        <div class="bg-white p-8 md:p-10 rounded-[2rem] shadow-card text-center transform transition duration-500 hover:-translate-y-4 hover:shadow-glow border-t-4 border-brand-primary reveal" style="transition-delay: 300ms;">
+          <div class="w-16 h-16 mx-auto bg-brand-bg rounded-full flex items-center justify-center text-brand-primary text-2xl mb-6">
+            <i class="fas fa-magic"></i>
+          </div>
+          <h3 class="font-serif text-2xl font-bold text-brand-text mb-4">Keratina</h3>
+          <p class="text-gray-600 leading-relaxed mb-6">
+            Fusión duradera e imperceptible mecha por mecha. La opción más premium para quienes buscan una melena de impacto por meses.
+          </p>
+          <div class="text-brand-primary font-bold text-sm uppercase tracking-wide">Durabilidad</div>
+        </div>
+
+      </div>
+
+      <!-- Call to Action -->
+      <div class="text-center mt-20 reveal bg-brand-bg p-8 rounded-3xl max-w-4xl mx-auto shadow-sm">
+        <i class="fas fa-crown text-brand-primary text-3xl mb-4"></i>
+        <h4 class="text-brand-text font-serif text-2xl md:text-3xl font-bold mb-3">
+          ¡Potencia tu mirada hoy mismo!
+        </h4>
+        <p class="text-gray-600 text-lg mb-6">
+          Agenda tu cita y deja que nuestras expertas diseñen las cejas perfectas para ti.
+        </p>
+        <a href="https://wa.me/+522941182897" target="_blank" class="inline-flex items-center px-8 py-3 bg-brand-primary text-white rounded-full font-bold shadow-md hover:bg-brand-hover transition-all transform hover:scale-105">
+          <i class="fab fa-whatsapp mr-2"></i> Agendar Cita
+        </a>
+      </div>
+    </section>
+
+    <!-- Galería de Extensiones -->
+    <section id="galeria" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12 reveal">
+          <h2 class="font-serif text-4xl font-bold text-brand-text mb-4">Galería de Transformaciones</h2>
+          <div class="w-16 h-1 bg-brand-primary mx-auto rounded-full mb-8 opacity-50"></div>
+          
+          <!-- Filtros -->
+          <div class="flex flex-wrap justify-center gap-3 mt-8 galeria-filtros">
+            <button data-filter="all" class="px-6 py-2 rounded-full border border-brand-primary text-white bg-brand-primary text-sm font-semibold shadow-sm transition-all hover:shadow-md active">Todos</button>
+            <button data-filter="tape" class="px-6 py-2 rounded-full border border-brand-primary text-brand-primary bg-white text-sm font-semibold hover:bg-brand-primary hover:text-white transition-all">Tape-In</button>
+            <button data-filter="micro" class="px-6 py-2 rounded-full border border-brand-primary text-brand-primary bg-white text-sm font-semibold hover:bg-brand-primary hover:text-white transition-all">Micro-Ring</button>
+            <button data-filter="keratina" class="px-6 py-2 rounded-full border border-brand-primary text-brand-primary bg-white text-sm font-semibold hover:bg-brand-primary hover:text-white transition-all">Keratina</button>
+          </div>
+        </div>
+
+        <!-- Grid Galería -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-2 md:px-0">
+          
+          <!-- Item 1: Tape-In -->
+          <div class="galeria-item relative group overflow-hidden rounded-2xl cursor-pointer aspect-[3/4] shadow-md hover:shadow-xl transition-all" data-category="tape">
+            <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Extensiones Tape-In">
+            <div class="absolute inset-0 bg-brand-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+              <i class="fas fa-search-plus text-white text-3xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300"></i>
+            </div>
+          </div>
+
+          <!-- Item 2: Micro-Ring -->
+          <div class="galeria-item relative group overflow-hidden rounded-2xl cursor-pointer aspect-[3/4] shadow-md hover:shadow-xl transition-all" data-category="micro">
+            <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Extensiones Micro-Ring">
+             <div class="absolute inset-0 bg-brand-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+              <i class="fas fa-search-plus text-white text-3xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300"></i>
+            </div>
+          </div>
+
+          <!-- Item 3: Keratina -->
+          <div class="galeria-item relative group overflow-hidden rounded-2xl cursor-pointer aspect-[3/4] shadow-md hover:shadow-xl transition-all" data-category="keratina">
+            <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Extensiones de Keratina">
+             <div class="absolute inset-0 bg-brand-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+              <i class="fas fa-search-plus text-white text-3xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300"></i>
+            </div>
+          </div>
+
+          <!-- Item 4: Tape-In 2 -->
+          <div class="galeria-item relative group overflow-hidden rounded-2xl cursor-pointer aspect-[3/4] shadow-md hover:shadow-xl transition-all" data-category="tape">
+            <img src="https://images.unsplash.com/photo-1522337360705-2b1d8d7b7e03?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Volumen con Tape-In">
+             <div class="absolute inset-0 bg-brand-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+              <i class="fas fa-search-plus text-white text-3xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300"></i>
+            </div>
+          </div>
+
+          <!-- Item 5: Keratina 2 -->
+          <div class="galeria-item relative group overflow-hidden rounded-2xl cursor-pointer aspect-[3/4] shadow-md hover:shadow-xl transition-all" data-category="keratina">
+            <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Largo con Keratina">
+             <div class="absolute inset-0 bg-brand-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+              <i class="fas fa-search-plus text-white text-3xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300"></i>
+            </div>
+          </div>
+
+          <!-- Item 6: Micro-Ring 2 -->
+          <div class="galeria-item relative group overflow-hidden rounded-2xl cursor-pointer aspect-[3/4] shadow-md hover:shadow-xl transition-all" data-category="micro">
+            <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Efecto Natural Micro-Ring">
+             <div class="absolute inset-0 bg-brand-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+              <i class="fas fa-search-plus text-white text-3xl drop-shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300"></i>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white pt-16 pb-10">
+    <div class="container mx-auto px-6 text-center">
+      <div class="mb-8">
+        <!-- Reemplaza con la ruta real -->
+        <img src="ruta/a/tu/logo-studio-berenice.png" alt="Studio Berenice" class="h-16 mx-auto mb-4 brightness-0 invert">
+        <h3 class="font-serif text-2xl font-bold text-brand-primary mb-2">Studio Berenice</h3>
+        <p class="text-gray-400">Realzamos tu belleza natural.</p>
+      </div>
+      
+      <div class="flex justify-center space-x-6 mb-8">
+        <a href="#" class="text-2xl text-gray-400 hover:text-brand-primary transition-colors"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="text-2xl text-gray-400 hover:text-brand-primary transition-colors"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/525551234567" target="_blank" class="text-2xl text-gray-400 hover:text-brand-primary transition-colors"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      
+      <div class="border-t border-gray-800 pt-8 text-gray-500 text-sm">
+        <p>&copy; 2025 Studio Berenice. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <a href="https://wa.me/+522941182897" target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="fixed inset-0 bg-black/95 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+    <button class="lb-cerrar absolute top-6 right-6 text-white hover:text-brand-primary transition-colors flex flex-col items-center group z-50">
+      <div class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center group-hover:border-brand-primary mb-1 bg-black/50">
+        <i class="fas fa-compress text-lg"></i>
+      </div>
+      <span class="text-xs uppercase font-bold tracking-wider">Cerrar</span>
+    </button>
+
+    <button class="lb-prev absolute left-2 md:left-8 text-white text-4xl hover:text-brand-primary p-4 z-40"><i class="fas fa-chevron-left"></i></button>
+    <img src="" class="lb-img max-h-[85vh] max-w-[90vw] rounded shadow-2xl transform transition-transform scale-95 mx-auto" alt="Vista Ampliada">
+    <button class="lb-next absolute right-2 md:right-8 text-white text-4xl hover:text-brand-primary p-4 z-40"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+  <script>
+    // --- LÓGICA JAVASCRIPT ---
+
+    // 1. Menú Móvil
+    const btnMenu = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if(btnMenu){
+      btnMenu.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // 2. Scroll Reveal
+    window.addEventListener('scroll', reveal);
+    function reveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      for(let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const revealTop = reveals[i].getBoundingClientRect().top;
+        const revealPoint = 150;
+        if(revealTop < windowHeight - revealPoint) {
+          reveals[i].classList.add('active');
+        }
+      }
+    }
+    reveal();
+
+    // 3. Header Shadow
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 50) {
+        header.classList.add('shadow-md', 'py-2');
+      } else {
+        header.classList.remove('shadow-md', 'py-2');
+      }
+    });
+
+    // 4. Filtrado de Galería
+    const filterBtns = document.querySelectorAll('.galeria-filtros button');
+    const items = document.querySelectorAll('.galeria-item');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+            b.classList.remove('bg-brand-primary', 'text-white');
+            b.classList.add('bg-white', 'text-brand-primary');
+        });
+        btn.classList.remove('bg-white', 'text-brand-primary');
+        btn.classList.add('bg-brand-primary', 'text-white');
+
+        const category = btn.dataset.filter;
+        items.forEach(item => {
+          if(category === 'all' || item.dataset.category === category) {
+            item.style.display = 'block';
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+            }, 50);
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.9)';
+            setTimeout(() => item.style.display = 'none', 300);
+          }
+        });
+      });
+    });
+
+    // 5. Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = lightbox.querySelector('.lb-img');
+    const lbCerrar = lightbox.querySelector('.lb-cerrar');
+    const lbPrev = lightbox.querySelector('.lb-prev');
+    const lbNext = lightbox.querySelector('.lb-next');
+    
+    let galleryImages = Array.from(document.querySelectorAll('.galeria-item img'));
+    let currentIndex = 0;
+
+    const openLightbox = (index) => {
+        currentIndex = index;
+        lbImg.src = galleryImages[currentIndex].src;
+        lightbox.classList.remove('hidden');
+        setTimeout(() => {
+            lightbox.classList.remove('opacity-0');
+            lbImg.classList.remove('scale-95');
+            lbImg.classList.add('scale-100');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeLightbox = () => {
+        lightbox.classList.add('opacity-0');
+        lbImg.classList.remove('scale-100');
+        lbImg.classList.add('scale-95');
+        setTimeout(() => {
+            lightbox.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }, 300);
+    };
+
+    galleryImages.forEach((img, index) => {
+      img.parentElement.addEventListener('click', () => {
+        openLightbox(index);
+      });
+    });
+
+    lbCerrar.addEventListener('click', closeLightbox);
+    
+    const showImage = (index) => {
+        if (index < 0) index = galleryImages.length - 1;
+        if (index >= galleryImages.length) index = 0;
+        currentIndex = index;
+        lbImg.style.opacity = '0.5';
+        setTimeout(() => {
+            lbImg.src = galleryImages[currentIndex].src;
+            lbImg.style.opacity = '1';
+        }, 150);
+    };
+
+    lbPrev.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex - 1); });
+    lbNext.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex + 1); });
+    
+    lightbox.addEventListener('click', (e) => {
+      if(e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if(!lightbox.classList.contains('hidden')){
+        if(e.key === 'Escape') closeLightbox();
+        if(e.key === 'ArrowLeft') showImage(currentIndex - 1);
+        if(e.key === 'ArrowRight') showImage(currentIndex + 1);
+      }
+    });
+  </script>
+</body>
+</html>
